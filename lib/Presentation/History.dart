@@ -11,21 +11,10 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  final List<Item> _items = [Item(name: 'Sam', price: 1000, img: 'img')];
-
   @override
   State<History> createState() => _HistoryState();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-          itemCount: _items.length,
-          itemBuilder: (context, index) {
-            return ItemTile(
-              name: _items[index].name,
-              amount: _items[index].price,
-            );
-          }),
-    );
+    return Scaffold();
   }
 }

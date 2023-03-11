@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ItemTile extends StatelessWidget {
   final String name;
-  final int amount;
+  final num amount;
 
   const ItemTile({required this.name, required this.amount, super.key});
 
