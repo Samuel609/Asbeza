@@ -25,24 +25,33 @@ class _MyHomePageState extends State<MyHomePage> {
       body: BlocBuilder<GroceryBloc, GroceryState>(
         builder: (context, state) {
           if (state is GroceryInitial) {
-            return Center(
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    alignment: Alignment.center,
-                    elevation: 0),
-                onPressed: () {
-                  BlocProvider.of<GroceryBloc>(context)
-                      .add(const GroceryEvent());
-                },
-                icon: const Icon(Icons.shopping_basket_rounded),
-                label: const Text("the best asbeza"),
-              ),
+            return Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(200, 50),
+                          alignment: Alignment.center,
+                          elevation: 0),
+                      onPressed: () {
+                        BlocProvider.of<GroceryBloc>(context)
+                            .add(const GroceryEvent());
+                      },
+                      icon: const Icon(Icons.shopping_basket_rounded),
+                      label: const Text("the best asbeza"),
+                    ),
+                  ],
+                ),
+              ],
             );
           }
           if (state is GroceryLoading) {
             return const Center(
+              
               child: CircularProgressIndicator(),
+              
             );
           } else if (state is GrocerySuccess) {
             return Container(
@@ -59,15 +68,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Row(
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        fit: BoxFit.contain,
-                                        image: NetworkImage(itemval.image))),
-                                height: MediaQuery.of(context).size.height * .1,
-                                width: MediaQuery.of(context).size.width * .3,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 11, vertical: 5),
+                              Card(
+                                elevation: 20,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.contain,
+                                          image: NetworkImage(itemval.image))),
+                                  height:
+                                      MediaQuery.of(context).size.height * .1,
+                                  width: MediaQuery.of(context).size.width * .3,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 11, vertical: 5),
+                                ),
                               ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * .4,
