@@ -1,20 +1,20 @@
 class Item {
-  String foodTile;
-  String foodDescription;
+  String title;
+  String desc;
   String image;
-  num foodPrice;
+  num Price;
 
   Item(
-      {required this.foodTile,
-      required this.foodDescription,
+      {required this.title,
+      required this.desc,
       required this.image,
-      required this.foodPrice});
+      required this.Price});
 
   factory Item.fromJson(Map<String, dynamic> parsedJson) {
     return Item(
-        foodTile: parsedJson['title'],
-        foodDescription: parsedJson['description'],
-        foodPrice: parsedJson['price'],
+        title: parsedJson['title'],
+        desc: parsedJson['description'],
+        Price: parsedJson['price'],
         image: parsedJson['image']);
   }
 

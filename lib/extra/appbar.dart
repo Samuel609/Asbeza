@@ -8,15 +8,10 @@ class appBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.amber,
-      elevation: 0,
+      elevation: 10,
       foregroundColor: Colors.black,
       title: const Text("Asveza"),
       actions: [
-        IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, Routes.History);
-            },
-            icon: const Icon(Icons.shopping_bag)),
         IconButton(
           onPressed: () {
             Navigator.pushNamed(context, Routes.Profile);
