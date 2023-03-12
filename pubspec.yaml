@@ -39,6 +39,7 @@ dependencies:
   bloc: ^8.1.1
   equatable: ^2.0.5
   http: ^0.13.5
+  mobile_number: ^2.1.1
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:grocery101/extra/drawer.dart';
-
-import '../extra/appbar.dart';
+import 'package:grocery101/extra/appbar.dart';
+import 'package:mobile_number/mobile_number.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,33 +12,124 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String _mobileNumber = '';
+  List<SimCard> _simCard = <SimCard>[];
+
+  @override
+  void initState() {
+    super.initState();
+    MobileNumber.listenPhonePermission((isPermissionGranted) {
+      if (isPermissionGranted) {
+        initMobileNumberState();
+      } else {}
+    });
+
+    initMobileNumberState();
+  }
+
+  Future<void> initMobileNumberState() async {
+    if (!await MobileNumber.hasPhonePermission) {
+      await MobileNumber.requestPhonePermission;
+      return;
+    }
+    try {
+      _mobileNumber = (await MobileNumber.mobileNumber)!;
+      _simCard = (await MobileNumber.getSimCards)!;
+    } on PlatformException catch (e) {
+      debugPrint("Failed to get mobile number because of '${e.message}'");
+    }
+    if (!mounted) return;
+
+    setState(() {});
+  }
+
+  Widget fillCards() {
+    List<Widget> widgets = _simCard
+        .map((SimCard sim) => Text(
+            'Sim Card Number: (${sim.countryPhonePrefix}) - ${sim.number}\nCarrier Name: ${sim.carrierName}\nCountry Iso: ${sim.countryIso}\nDisplay Name: ${sim.displayName}\nSim Slot Index: ${sim.slotIndex}\n\n'))
+        .toList();
+    return Column(children: widgets);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(50), child: appBar()),
+        preferredSize: Size.fromHeight(50),
+        child: appBar(),
+      ),
       drawer: drawer(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(130, 54, 0, 0),
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.amber,
-                image: const DecorationImage(
-                    fit: BoxFit.contain, image: AssetImage('assets/jj.jpg'))),
-          ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(34, 40, 0, 0),
-            width: 300,
-            height: 100,
-            child: const Text("Name:  Samuel Abera"),
-          )
-        ],
+      body: Container(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * .2,
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.only(bottom: 15),
+              decoration: const BoxDecoration(
+                  color: Colors.amber,
+                  image: DecorationImage(
+                      colorFilter: ColorFilter.mode(
+                          Color.fromRGBO(0, 0, 0, 0.753), BlendMode.darken),
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/jj.jpg"))),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 10, left: 15),
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            border: Border.all(width: 2, color: Colors.white),
+                            image: const DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80")),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5))),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Samuel Abera",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          const Text(
+                            "@sam609",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "+$_mobileNumber",
+                            style: const TextStyle(color: Colors.white),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
