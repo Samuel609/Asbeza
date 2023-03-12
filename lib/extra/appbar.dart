@@ -7,10 +7,10 @@ class appBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.grey,
       elevation: 10,
-      foregroundColor: Colors.black,
-      title: const Text("Asveza"),
+      foregroundColor: Colors.white,
+      title: const Text("GroceryTk"),
       actions: [
         IconButton(
           onPressed: () {

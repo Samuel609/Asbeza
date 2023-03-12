@@ -5,7 +5,7 @@ import '../routes.dart';
 class drawer extends StatelessWidget {
   drawer({super.key});
   final drawerItems = [
-    {"title": "MyHomePage", "route": Routes.MyHomePage, "icon": Icons.home},
+    {"title": "Home", "route": Routes.MyHomePage, "icon": Icons.home},
     {"title": "History", "route": Routes.History, "icon": Icons.shopping_bag},
   ];
 
@@ -13,7 +13,7 @@ class drawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Drawer(
-          backgroundColor: Colors.amber,
+          backgroundColor: Colors.grey,
           child: Container(
             margin: const EdgeInsets.all(25),
             child: ListView.builder(

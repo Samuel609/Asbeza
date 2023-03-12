@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: appBar(),
@@ -28,17 +28,19 @@ class _MyHomePageState extends State<MyHomePage> {
             return Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 100, 80, 50),
+                    padding: const EdgeInsets.fromLTRB(100, 100, 80, 0),
                     child: Image.asset(
-                      'assets/tt.jpg',
-                      width: 150,
+                      'assets/rr.jpg',
+                      width: 1000,
+                      fit: BoxFit.fitWidth,
+                      colorBlendMode: BlendMode.darken,
                     )),
                 const Padding(
-                  padding: EdgeInsets.all(25.0),
+                  padding: EdgeInsets.all(15.0),
                   child: Text(
                     "Offering the best for the best!",
                     style: TextStyle(
-                        color: Colors.amber,
+                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
@@ -54,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Colors.white),
-                      padding: const EdgeInsets.all(22.0)),
+                      padding: const EdgeInsets.all(24.0)),
                   child: const Text("Start"),
                 ),
               ],
@@ -74,13 +76,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   final itemval = state.itemss[index];
                   return Column(
                     children: [
-                      
                       Row(
                         children: [
                           Column(
                             children: [
                               Card(
-                                elevation: 0,
+                                elevation: 100,
                                 child: Container(
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
@@ -105,12 +106,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                         Text(
                                           itemval.title,
                                           style: const TextStyle(
-                                              color: Colors.black),
+                                              color: Colors.white),
                                         ),
                                         Text(
                                           "${itemval.Price}\$",
                                           style: const TextStyle(
-                                              color: Colors.black,
+                                              color: Colors.white,
                                               fontWeight: FontWeight.w900),
                                         )
                                       ],
@@ -123,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       },
                                       icon: const Icon(
                                         Icons.shopping_cart_checkout_rounded,
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         size: 40,
                                       ))
                                 ],

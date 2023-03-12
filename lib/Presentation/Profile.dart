@@ -22,21 +22,21 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(170, 40, 0, 0),
+            margin: EdgeInsets.fromLTRB(130, 54, 0, 0),
             width: 100,
             height: 100,
-            decoration: const BoxDecoration(
-              shape: BoxShape.rectangle,
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Colors.grey
-              ),
-              child: Icon(Icons.person, size: 80, color: Colors.white,),
-            ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.amber,
+                image: const DecorationImage(
+                    fit: BoxFit.contain, image: AssetImage('assets/jj.jpg'))),
           ),
-          
+          Container(
+            margin: const EdgeInsets.fromLTRB(34, 40, 0, 0),
+            width: 300,
+            height: 100,
+            child: const Text("Name:  Samuel Abera"),
+          )
         ],
       ),
     );
