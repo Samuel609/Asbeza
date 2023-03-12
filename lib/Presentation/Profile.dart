@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: appBar(),
@@ -87,14 +87,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 80,
                         height: 80,
                         decoration: BoxDecoration(
-                            color: Colors.amber,
-                            border: Border.all(width: 2, color: Colors.white),
-                            image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80")),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5))),
+                          color: Colors.amber,
+                          border: Border.all(width: 2, color: Colors.white),
+                        ),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
