@@ -8,23 +8,23 @@ class Service {
     _repo = Repo();
   }
 
-  saveAsbeza(Item item) async {
+  saveItem(Item item) async {
     return await _repo!.insertData('history', item.toJson());
   }
 
-  readAsbeza() async {
+  readItem() async {
     return await _repo!.readData('history');
   }
 
-  updateAsbeza(Item item) async {
+  updateItem(Item item) async {
     return await _repo!.updateData('history', item.toJson());
   }
 
-  deleteAsbeza(dispatchId) async {
+  deleteItem(dispatchId) async {
     return await _repo!.deleteData('history', dispatchId);
   }
 
-  wipeDate() async {
+  wipeData() async {
     await _repo!.deleteAllData('history');
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:grocery101/bloc/grocery_bloc.dart';
 import 'package:grocery101/extra/drawer.dart';
 
@@ -25,13 +27,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: BlocBuilder<GroceryBloc, GroceryState>(
         builder: (context, state) {
           if (state is GroceryInitial) {
-            BlocProvider.of<GroceryBloc>(context).add(GroceryFetchEvent());
-          }
-          else if (state is GroceryLoading) {
+            BlocProvider.of<GroceryBloc>(context)
+                .add(const GroceryFetchEvent());
+          } else if (state is GroceryLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is GrocerySuccess) {
+            itemAdd = state.history.length;
             return Container(
               margin: const EdgeInsets.only(top: 5),
               height: MediaQuery.of(context).size.height * 0.90,
