@@ -25,44 +25,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: BlocBuilder<GroceryBloc, GroceryState>(
         builder: (context, state) {
           if (state is GroceryInitial) {
-            return Column(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(100, 100, 80, 0),
-                    child: Image.asset(
-                      'assets/rr.jpg',
-                      width: 1000,
-                      fit: BoxFit.fitWidth,
-                      colorBlendMode: BlendMode.darken,
-                    )),
-                const Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Text(
-                    "Offering the best for the best!",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<GroceryBloc>(context)
-                        .add(const GroceryFetchEvent());
-                  },
-                  style: ElevatedButton.styleFrom(
-                      textStyle: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
-                      padding: const EdgeInsets.all(24.0)),
-                  child: const Text("Start"),
-                ),
-              ],
-            );
+            BlocProvider.of<GroceryBloc>(context).add(GroceryFetchEvent());
           }
-          if (state is GroceryLoading) {
+          else if (state is GroceryLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
