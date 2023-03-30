@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:grocery101/model/Item.dart';
@@ -23,6 +22,9 @@ class GroceryBloc extends Bloc<GroceryEvent, GroceryState> {
         await _service.readItem().then((val) => {
               history = val,
             });
+
+        historyLoad = Item.histList(history);
+        emit(GrocerySuccess(itemss: activity!, history: historyLoad));
       } catch (e) {
         emit(GroceryInitial());
       }

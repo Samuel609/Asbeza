@@ -23,6 +23,7 @@ class Repo {
       data,
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    // return await connection.rawQuery("DROP TABLE IF EXISTS history");
   }
 
   readData(table) async {

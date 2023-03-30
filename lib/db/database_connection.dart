@@ -13,6 +13,6 @@ class DatabaseConnection {
 
   _onCreatingDatabase(Database database, int version) async {
     await database.execute(
-        "CREATE TABLE history(id INTEGER PRIMARY KEY, title TEXT, desc TEXT, image TEXT, price INTEGER)");
+        "CREATE TABLE history(id INTEGER PRIMARY KEY, title TEXT, desc TEXT, image TEXT, price INTEGER, quantity INTEGER, addItem INTEGER)");
   }
 }

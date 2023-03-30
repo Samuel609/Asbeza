@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CircularProgressIndicator(),
             );
           } else if (state is GrocerySuccess) {
-            itemAdd = state.history.length;
+            final int itemAdd = state.history.length;
             return Container(
               margin: const EdgeInsets.only(top: 5),
               height: MediaQuery.of(context).size.height * 0.90,

@@ -26,11 +26,12 @@ class Item {
         quantity: 1,
         addItem: 0);
   }
+
   factory Item.HistfromJson(Map<String, dynamic> parsedJson) {
     return Item(
         id: parsedJson["id"],
         title: parsedJson['title'],
-        desc: parsedJson['description'],
+        desc: parsedJson['desc'],
         Price: parsedJson['price'],
         image: parsedJson['image'],
         quantity: parsedJson["quantity"],
